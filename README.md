@@ -87,12 +87,14 @@ $y = f(x,w) + \epsilon$
 Следовательно, функция плотности условной вероятности PDF для Y с учетом переменных-предикторов будет равна:
 
 ![image.png](https://github.com/denis-samatov/Bayesian_regression_model/blob/main/formula_1.png)
+
 Функция правдоподобия для n наблюдений, у которых каждое наблюдение $(x_{i1}, x_{i2}, \cdots, x_{iP}, y_i)$  соответствует нормальному распределению со средним ${\mu_i = w_{0} + w_1x_{i1} + w_2x_{i2} + \cdots + w_{P}x_{iP}}$ и дисперсией $\sigma^2$ , будет совместной функцией плотности вероятности PDF зависимых переменных и может быть записана как произведение отдельных PDF:
 
 ![image.png](https://github.com/denis-samatov/Bayesian_regression_model/blob/main/formula_2.png)
 Для упрощения вычислений мы можем взять логарифм функции правдоподобия:
 
 ![image.png](https://github.com/denis-samatov/Bayesian_regression_model/blob/main/formula_3.png)
+
 **Точность:**
 
 ${\beta = \frac{1}{\sigma^2}}$
