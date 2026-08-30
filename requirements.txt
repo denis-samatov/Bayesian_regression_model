@@ -1,0 +1,4 @@
+torch==2.13.0
+pyro-ppl==1.9.1
+matplotlib
+seaborn

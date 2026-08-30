@@ -1,41 +1,17 @@
+> **This is a university coursework exercise**, not a production model or a novel technique -- see [Assignment](Bayesian_regression_model.ipynb) for the original prompt it was written against. The author already removed it from the profile's Featured Work ("university coursework, not representative").
+
 # Bayesian Regression with Pyro
 
-This Python code demonstrates Bayesian regression using the Pyro library. Bayesian regression is a powerful technique for modeling relationships between variables while accounting for uncertainty in model parameters. The code covers data generation, defining a Bayesian regression model, performing Bayesian inference using Stochastic Variational Inference (SVI), and visualizing posterior distributions of the model parameters.
+This notebook demonstrates Bayesian linear regression using the Pyro library: generating simulated data with a known slope and intercept, defining priors for slope/intercept/sigma and a normal-noise likelihood, fitting the posterior with Stochastic Variational Inference (SVI), and visualizing the resulting posterior distributions.
 
-## **Theory of Bayesian Linear Regression**
+The likelihood modeled is the standard one for linear regression under Gaussian noise:
 
-### **Introduction**
-
-Linear regression is a popular regression approach in machine learning. It is based on the assumption that the underlying data is normally distributed and that all relevant predictor variables have a linear relationship with the outcome. However, in the real world, this assumption may not always hold, making Bayesian regression a better choice. Bayesian regression leverages prior beliefs or knowledge about the data to "learn" more about it and make more accurate predictions. It also accounts for data uncertainty and uses prior knowledge to provide more accurate estimates.
-
-### **Bayesian Regression**
-
-Bayesian regression is a type of linear regression that uses Bayesian statistics to estimate unknown parameters of the model. It uses Bayes' theorem to estimate the probability of a set of parameters given the observed data. The goal of Bayesian regression is to find the best estimate of the parameters of the linear model that describes the relationship between independent and dependent variables.
-
-### **Some Dependent Concepts for Bayesian Regression**
-
-**Bayes' Theorem**
-
-Bayes' theorem provides a relationship between the prior probability of an event and its posterior probability after considering the evidence. It states that the conditional probability of an event is equal to the likelihood of the event given certain conditions multiplied by the prior probability of the event, divided by the probability of the conditions.
-
-**Maximum Likelihood Estimation (MLE)**
-
-MLE is a method used to estimate the parameters of a statistical model by maximizing the likelihood function. It aims to find parameter values that make the observed data most probable within the assumed model.
-
-**Maximum A Posteriori (MAP) Estimation**
-
-MAP estimation is a Bayesian approach that combines prior information with the likelihood function to estimate parameters. It involves finding parameter values that maximize the posterior distribution, obtained by applying Bayes' theorem.
-
-### **Implementation of Bayesian Regression**
-
-Let's implement a Bayesian regression model using the Pyro library.
+![Likelihood formula](images/formula_1.png)
 
 ## Installation
 
-To run this code, you need to install the Pyro library. You can install it using the following command:
-
 ```bash
-pip install pyro-ppl
+pip install -r requirements.txt
 ```
 
 ## Code Overview
@@ -163,25 +139,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Posterior Distributions](https://github.com/denis-samatov/Bayesian_regression_model/blob/main/img.png)
+![Posterior Distributions](images/img.png)
 
-## Results
+## Reproducibility
 
-### Advantages of Bayesian Regression:
-
-- **Effective with small data sizes:** Bayesian regression is very effective when there is limited data.
-- **Suitable for online learning:** Especially useful for online learning, where data arrives in real-time, compared to batch learning.
-- **Mathematically robust:** The Bayesian approach is a proven and mathematically sound method that can be used even without prior knowledge of the data.
-- **Ability to incorporate external information:** Bayesian methods use priors, allowing the incorporation of external information into the model.
-
-### Disadvantages of Bayesian Regression:
-
-- **Inference time:** Inference can take a long time.
-- **Inefficiency with large data sizes:** For large datasets, the Bayesian approach can be less efficient compared to frequentist methods.
-- **Installation issues:** If installing new packages is difficult, it can be a problem.
-- **Dependence on linearity:** Bayesian models are also susceptible to errors inherent in traditional frequentist models, and they still rely on linear relationships between features and the outcome variable.
-
-### When to Use Bayesian Regression:
-
-- **Small sample sizes:** Bayesian inference is particularly useful when dealing with small data sizes. It is a good choice when needing to develop a complex model but with limited data.
-- **Reliable prior knowledge:** A straightforward way to incorporate reliable external knowledge into a model is by using a Bayesian model. The impact of priors will be more pronounced when working with small datasets.
+The notebook calls `pyro.set_rng_seed(0)` before generating data and running SVI, so re-running it top to bottom produces bit-identical posterior mean estimates (verified by running the training loop twice and comparing the output).
